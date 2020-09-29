@@ -14,7 +14,7 @@ class ExploreScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mmk/screens/memories_screen.dart';
 import 'package:mmk/screens/search_screen.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,31 @@ import 'package:mmk/screens/trips_screen.dart';
 import '../stateManager/bottom_navigation_state.dart';
 
 class MMKBottomNavigationBar extends StatelessWidget {
+  final Widget exploreIcon = SvgPicture.asset(
+    "assets/images/explore.svg",
+    color: Colors.white,
+  );
+
+  final Widget searchIcon = SvgPicture.asset(
+    "assets/images/search.svg",
+    color: Colors.white,
+  );
+
+  final Widget plusIcon = SvgPicture.asset(
+    "assets/images/plus.svg",
+    color: Colors.white,
+  );
+
+  final Widget bookedIcon = SvgPicture.asset(
+    "assets/images/booked.svg",
+    color: Colors.white,
+  );
+
+  final Widget meIcon = SvgPicture.asset(
+    "assets/images/me.svg",
+    color: Colors.white,
+  );
+
   final List<Map<String, Object>> _pages = [
     {
       'page': ExploreScreen(),
@@ -47,50 +73,23 @@ class MMKBottomNavigationBar extends StatelessWidget {
         currentIndex: _selectedPageIndex,
         items: [
           BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.explore,
-              size: 35,
-            ),
-            icon: Icon(
-              Icons.explore,
-            ),
+            icon: exploreIcon,
             title: Container(),
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.search,
-              size: 35,
-            ),
-            icon: Icon(
-              Icons.search,
-            ),
+            icon: searchIcon,
             title: Container(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-              size: 45,
-            ),
+            icon: plusIcon,
             title: Container(),
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.bookmark_border,
-              size: 35,
-            ),
-            icon: Icon(
-              Icons.bookmark_border,
-            ),
+            icon: bookedIcon,
             title: Container(),
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.account_circle,
-              size: 35,
-            ),
-            icon: Icon(
-              Icons.account_circle,
-            ),
+            icon: meIcon,
             title: Container(),
           ),
         ],

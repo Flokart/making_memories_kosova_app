@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mmk/screens/tripsPage/saved_page.dart';
-import 'package:mmk/screens/tripsPage/trips_page.dart';
+import 'package:mmk/screens/tripsPage/booked_page.dart';
 
 class TripsScreen extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _TripsScreenState extends State<TripsScreen> {
               tabs: [
                 Tab(
                   icon: Text(
-                    'Trips',
+                    'Booked',
                     style: TextStyle(
                       fontSize: 17,
                     ),
@@ -30,7 +30,7 @@ class _TripsScreenState extends State<TripsScreen> {
                 ),
                 Tab(
                   icon: Text(
-                    'Recently Viewed',
+                    'Saved',
                     style: TextStyle(
                       fontSize: 17,
                     ),
@@ -42,7 +42,7 @@ class _TripsScreenState extends State<TripsScreen> {
           ),
           body: TabBarView(
             children: [
-              TripsPage(),
+              BookedPage(),
               SavedPage(),
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mmk/screens/tripsPage/saved_page.dart';
-import 'package:mmk/screens/tripsPage/booked_page.dart';
+
+import '../screens/tripsPage/saved_page.dart';
+import '../screens/tripsPage/booked_page.dart';
 
 class TripsScreen extends StatefulWidget {
   @override

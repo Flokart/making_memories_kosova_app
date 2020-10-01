@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mmk/screens/event_category_screen.dart';
+import 'package:mmk/screens/event_info_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:mmk/screens/settings_screen.dart';
 
@@ -19,6 +21,8 @@ class MMK extends StatelessWidget {
       child: MaterialApp(
         routes: {
           SettingsScreen.routeName: (ctx) => SettingsScreen(),
+          EventCategoryScreen.routeName: (ctx) => EventCategoryScreen(),
+          EventInfoScreen.routeName: (ctx) => EventInfoScreen(),
         },
         title: 'MMK',
         theme: ThemeData(

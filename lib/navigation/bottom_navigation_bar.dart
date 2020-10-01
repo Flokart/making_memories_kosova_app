@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mmk/screens/memories_screen.dart';
-import 'package:mmk/screens/search_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:mmk/screens/explore_screen.dart';
-import 'package:mmk/screens/me_screen.dart';
-import 'package:mmk/screens/trips_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../screens/memories_screen.dart';
+import '../screens/search_screen.dart';
+import '../screens/explore_screen.dart';
+import '../screens/me_screen.dart';
+import '../screens/trips_screen.dart';
 
 import '../stateManager/bottom_navigation_state.dart';
 

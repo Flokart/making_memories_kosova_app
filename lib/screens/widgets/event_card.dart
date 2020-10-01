@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mmk/screens/dummy_data.dart';
+
+import '../../assets/dummy_data.dart';
+import '../event_info_screen.dart';
 
 class EventCard extends StatelessWidget {
   EventCard(
@@ -26,17 +28,33 @@ class EventCard extends StatelessWidget {
         break;
     }
     return GestureDetector(
-      onTap: () {},
-      child: Stack(
-        children: <Widget>[
-          Image.network(
-            data.elementAt(index).elementAt(2),
-            fit: BoxFit.fill,
-          ),
-          Align(
-            child: Container(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          EventInfoScreen.routeName,
+          arguments: {
+            'data': data,
+            'index': index,
+          },
+        );
+      },
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              height: 180,
+              child: Image.network(
+                data.elementAt(index).elementAt(2),
+                fit: BoxFit.fill,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 35,
+              color: Colors.black.withOpacity(0.4),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -51,13 +69,9 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
               ),
-              alignment: Alignment.bottomCenter,
-              height: 35,
-              color: Colors.black.withOpacity(0.4),
             ),
-            alignment: Alignment.bottomCenter,
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

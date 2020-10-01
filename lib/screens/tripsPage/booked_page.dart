@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:mmk/stateManager/bottom_navigation_state.dart';
+import '../../stateManager/bottom_navigation_state.dart';
 
 class BookedPage extends StatelessWidget {
   @override
@@ -46,7 +46,7 @@ class BookedPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     )),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import 'package:mmk/screens/settings_screen.dart';
+import '../screens/settings_screen.dart';
 
 class MeScreen extends StatelessWidget {
   @override
@@ -111,49 +111,6 @@ class MeScreen extends StatelessWidget {
                       scale: 0.9,
                     ),
                   ),
-                  // Container(
-                  //   width: double.infinity,
-                  //   height: 250,
-                  //   child: ListView(
-                  //     scrollDirection: Axis.horizontal,
-                  //     children: <Widget>[
-                  //       // Container(
-                  //       //   height: 100,
-                  //       //   width: 200,
-                  //       //   child:
-                  //       Card(
-                  //         elevation: 5,
-                  //         shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(15.0),
-                  //         ),
-                  //         child: ,
-                  //       ),
-                  //       // ),
-                  //       Container(
-                  //         height: 100,
-                  //         width: 200,
-                  //         child: Card(
-                  //           elevation: 5,
-                  //           color: Colors.red,
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(15.0),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       Container(
-                  //         height: 100,
-                  //         width: 200,
-                  //         child: Card(
-                  //           elevation: 5,
-                  //           color: Colors.blue,
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(15.0),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),

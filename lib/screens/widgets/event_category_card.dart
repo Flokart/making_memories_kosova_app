@@ -6,23 +6,36 @@ import '../event_category_screen.dart';
 class EventCategoryCard extends StatelessWidget {
   EventCategoryCard(this.index);
   final int index;
-  final dummyData = DummyData();
+  final dummy = DummyData();
 
   @override
   Widget build(BuildContext context) {
-    List<String> data;
+    List<List<String>> data;
     switch (index) {
       case 0:
-        data = dummyData.all;
+        for (int i = 0; i < dummy.data.length; i++) {
+          dummy.all.add(dummy.data[i]);
+        }
+        data = dummy.all;
         break;
       case 1:
-        data = dummyData.outdoor;
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][3] == 'outdoor') {
+            dummy.outdoor.add(dummy.data[i]);
+          }
+        }
+        data = dummy.outdoor;
         break;
       case 2:
-        data = dummyData.accomodations;
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][3] == 'acomm') {
+            dummy.acomm.add(dummy.data[i]);
+          }
+        }
+        data = dummy.acomm;
         break;
       case 3:
-        data = dummyData.private;
+        data = dummy.private;
         break;
     }
     return GestureDetector(
@@ -45,7 +58,7 @@ class EventCategoryCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.network(
-                  data.elementAt(1),
+                  data.elementAt(0).elementAt(1),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,7 +68,7 @@ class EventCategoryCard extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Align(
               child: Text(
-                data.elementAt(0),
+                data.elementAt(0).elementAt(0),
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
               alignment: Alignment.topLeft,

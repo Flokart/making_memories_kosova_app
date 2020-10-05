@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:mmk/assets/dummy_data.dart';
 
 import '../screens/widgets/event_category_card.dart';
 import '../screens/widgets/event_card.dart';
 
+// ignore: must_be_immutable
 class ExploreScreen extends StatelessWidget {
+  int init = 0;
+  final dummy = DummyData();
+
   @override
   Widget build(BuildContext context) {
+    if (init == 0) {
+      for (int i = 0; i < dummy.data.length; i++) {
+        if (dummy.data[i][4] == 'now') dummy.now.add(dummy.data[i]);
+      }
+      for (int i = 0; i < dummy.data.length; i++) {
+        if (dummy.data[i][4] == 'nearby') dummy.nearby.add(dummy.data[i]);
+      }
+      for (int i = 0; i < dummy.data.length; i++) {
+        if (dummy.data[i][4] == 'future') dummy.future.add(dummy.data[i]);
+      }
+      init++;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore'),
@@ -75,7 +92,7 @@ class ExploreScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return EventCard(index, 'now');
                     },
-                    itemCount: 2,
+                    itemCount: dummy.now.length,
                     viewportFraction: 0.8,
                     scale: 0.9,
                   ),
@@ -100,9 +117,9 @@ class ExploreScreen extends StatelessWidget {
                     controller: SwiperController(),
                     loop: false,
                     itemBuilder: (BuildContext context, int index) {
-                      return EventCard(index, 'nearby');
+                      return EventCard(index, 'nearby') ?? Container();
                     },
-                    itemCount: 2,
+                    itemCount: dummy.nearby.length,
                     viewportFraction: 0.8,
                     scale: 0.9,
                   ),
@@ -127,9 +144,9 @@ class ExploreScreen extends StatelessWidget {
                     controller: SwiperController(),
                     loop: false,
                     itemBuilder: (BuildContext context, int index) {
-                      return EventCard(index, 'future');
+                      return EventCard(index, 'future') ?? Container();
                     },
-                    itemCount: 2,
+                    itemCount: dummy.future.length,
                     viewportFraction: 0.8,
                     scale: 0.9,
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../assets/dummy_data.dart';
 import '../event_info_screen.dart';
 
+// ignore: must_be_immutable
 class EventCard extends StatelessWidget {
   EventCard(
     this.index,
@@ -11,20 +12,52 @@ class EventCard extends StatelessWidget {
 
   final int index;
   final String category;
-  final dummyData = DummyData();
+  final dummy = DummyData();
+  List<List<String>> data;
 
   @override
   Widget build(BuildContext context) {
-    List<List<String>> data;
     switch (category) {
       case 'now':
-        data = dummyData.now;
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][4] == 'now')
+            dummy.now.add(dummy.data[i]);
+          data = dummy.now;
+        }
         break;
       case 'nearby':
-        data = dummyData.nearby;
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][4] == 'nearby')
+            dummy.nearby.add(dummy.data[i]);
+          data = dummy.nearby;
+        }
         break;
       case 'future':
-        data = dummyData.future;
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][4] == 'future')
+            dummy.future.add(dummy.data[i]);
+          data = dummy.future;
+        }
+        break;
+        case 'All Events':
+        for (int i = 0; i < dummy.data.length; i++) {
+          dummy.all.add(dummy.data[i]);
+        }
+          data = dummy.all;
+        break;
+        case 'Outdoor Activities':
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][3] == 'outdoor')
+            dummy.outdoor.add(dummy.data[i]);
+          data = dummy.outdoor;
+        }
+        break;
+        case 'Accomodations':
+        for (int i = 0; i < dummy.data.length; i++) {
+          if (dummy.data[i][3] == 'acomm')
+            dummy.acomm.add(dummy.data[i]);
+          data = dummy.acomm;
+        }
         break;
     }
     return GestureDetector(

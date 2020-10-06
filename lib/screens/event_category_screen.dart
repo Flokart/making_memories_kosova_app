@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mmk/assets/dummy_data.dart';
-import 'package:mmk/screens/widgets/event_card.dart';
 
 class EventCategoryScreen extends StatelessWidget {
   static const String routeName = '/event-category-screen';
@@ -9,41 +8,64 @@ class EventCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List<String>> data = ModalRoute.of(context).settings.arguments;
+    List<String> categories = [];
     switch (data.elementAt(0).elementAt(0)) {
       case 'All Events':
-        for (int i = 0; i < dummy.data.length; i++) {
-          dummy.all.add(dummy.data[i]);
-        }
+        categories = dummy.allCat;
         break;
       case 'Outdoor Activities':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'outdoor') {
-            dummy.outdoor.add(dummy.data[i]);
-          }
-        }
+        categories = dummy.outdoorCat;
         break;
       case 'Accomodations':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'acomm') {
-            dummy.acomm.add(dummy.data[i]);
-          }
-        }
+        categories = dummy.accommCat;
+        break;
+      case 'Transportation':
+        categories = dummy.transportCat;
         break;
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(data.elementAt(0).elementAt(0)),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                for (int i = 1; i < data.length; i++)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.black,
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      data.elementAt(0).elementAt(0),
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                ),
+                for (int i = 0; i < categories.length; i++)
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: EventCard(i, data.elementAt(0).elementAt(0)),
+                    padding: const EdgeInsets.all(15),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            categories[i],
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Icon(Icons.arrow_right),
+                        ],
+                      ),
+                    ),
                   ),
               ],
             ),

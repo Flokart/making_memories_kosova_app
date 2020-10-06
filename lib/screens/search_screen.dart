@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmk/screens/nearby_events_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   @override
@@ -22,22 +23,37 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
+              padding: const EdgeInsets.symmetric(vertical: 25),
               child: Container(
-                height: 230,
+                height: 240,
                 width: double.infinity,
                 child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Text(
-                      'Nearby Activities',
-                      style: TextStyle(fontSize: 28, color: Colors.white),
+                  child: Stack(children: [
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pushNamed(NearbyEventsScreen.routeName),
+                      child: Container(
+                        width: 390,
+                        height: 240,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: Image.network(
+                            'https://oecdenvironmentfocusblog.files.wordpress.com/2020/06/wed-blog-shutterstock_1703194387_low_nwm.jpg',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text(
+                        'Nearby Activities',
+                        style: TextStyle(fontSize: 28, color: Colors.white),
+                      ),
+                    ),
+                  ]),
                   elevation: 5,
-                  color: Colors.blue,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(25),
                   ),
                 ),
               ),
@@ -77,9 +93,12 @@ class SearchScreen extends StatelessWidget {
                   Divider(
                     thickness: 1,
                   ),
-                  Text(
-                    'Boge Skiing',
-                    style: TextStyle(fontSize: 18),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      'Boge Skiing',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                   Divider(
                     thickness: 1,

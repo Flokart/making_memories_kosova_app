@@ -28,14 +28,14 @@ class EventCategoryCard extends StatelessWidget {
         break;
       case 2:
         for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'acomm') {
-            dummy.acomm.add(dummy.data[i]);
+          if (dummy.data[i][3] == 'accomm') {
+            dummy.accomm.add(dummy.data[i]);
           }
         }
-        data = dummy.acomm;
+        data = dummy.accomm;
         break;
       case 3:
-        data = dummy.private;
+        data = dummy.transport;
         break;
     }
     return GestureDetector(

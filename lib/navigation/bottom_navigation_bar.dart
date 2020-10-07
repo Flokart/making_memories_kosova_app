@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../screens/memories_screen.dart';
+import '../screens/add_memories_screen.dart';
 import '../screens/search_screen.dart';
 import '../screens/explore_screen.dart';
 import '../screens/me_screen.dart';
@@ -13,27 +13,27 @@ import '../stateManager/bottom_navigation_state.dart';
 class MMKBottomNavigationBar extends StatelessWidget {
   final Widget exploreIcon = SvgPicture.asset(
     "assets/images/explore.svg",
-    color: Colors.white,
+    // color: Colors.white,
   );
 
   final Widget searchIcon = SvgPicture.asset(
     "assets/images/search.svg",
-    color: Colors.white,
+    // color: Colors.white,
   );
 
   final Widget plusIcon = SvgPicture.asset(
     "assets/images/plus.svg",
-    color: Colors.white,
+    // color: Colors.white,
   );
 
   final Widget bookedIcon = SvgPicture.asset(
     "assets/images/booked.svg",
-    color: Colors.white,
+    // color: Colors.white,
   );
 
   final Widget meIcon = SvgPicture.asset(
     "assets/images/me.svg",
-    color: Colors.white,
+    // color: Colors.white,
   );
 
   final List<Map<String, Object>> _pages = [
@@ -46,7 +46,7 @@ class MMKBottomNavigationBar extends StatelessWidget {
       'title': 'Search',
     },
     {
-      'page': MemoriesScreen(),
+      'page': AddMemoriesScreen(),
       'title': 'Add Memory',
     },
     {
@@ -67,8 +67,8 @@ class MMKBottomNavigationBar extends StatelessWidget {
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
         onTap: (index) => state.setSelectedPageIndex(index),
         currentIndex: _selectedPageIndex,
@@ -79,10 +79,12 @@ class MMKBottomNavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: searchIcon,
+            // icon: Icon(Icons.search),
             title: Container(),
           ),
           BottomNavigationBarItem(
             icon: plusIcon,
+            // icon: Icon(Icons.add),
             title: Container(),
           ),
           BottomNavigationBarItem(

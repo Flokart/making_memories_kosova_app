@@ -33,13 +33,13 @@ class BookedPage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 padding: const EdgeInsets.all(13),
-                color: Theme.of(context).primaryColor,
+                color: Color.fromRGBO(87,112, 182, 1),
                 onPressed: () {
                   state.setSelectedPageIndex(0);
                 },
                 child: Container(
                     width: double.infinity,
-                    color: Theme.of(context).primaryColor,
+                    color: Color.fromRGBO(87,112, 182, 1),
                     child: Text(
                       'Get Started',
                       style: TextStyle(color: Colors.white, fontSize: 15),

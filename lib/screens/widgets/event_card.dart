@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../assets/dummy_data.dart';
+import '../../helpers/dummy_data.dart';
 import '../event_info_screen.dart';
 
 // ignore: must_be_immutable
@@ -36,7 +36,7 @@ class EventCard extends StatelessWidget {
           data = dummy.future;
         }
         break;
-      case 'All Events':
+      case 'Events':
         for (int i = 0; i < dummy.data.length; i++) {
           dummy.all.add(dummy.data[i]);
         }

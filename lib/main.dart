@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mmk/screens/event_category_screen.dart';
 import 'package:mmk/screens/event_info_screen.dart';
 import 'package:mmk/screens/nearby_events_screen.dart';
+import 'package:mmk/screens/providers/memories.dart';
 import 'package:provider/provider.dart';
 import 'package:mmk/screens/settings_screen.dart';
 
@@ -18,6 +19,7 @@ class MMK extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => BottomNavigationState()),
+        ChangeNotifierProvider(create: (_) => Memories()),
       ],
       child: MaterialApp(
         routes: {
@@ -28,7 +30,7 @@ class MMK extends StatelessWidget {
         },
         title: 'MMK',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Color.fromRGBO(43, 181, 100, 1),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: MMKBottomNavigationBar(),

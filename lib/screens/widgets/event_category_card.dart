@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../assets/dummy_data.dart';
+import '../../helpers/dummy_data.dart';
 import '../event_category_screen.dart';
 
 class EventCategoryCard extends StatelessWidget {

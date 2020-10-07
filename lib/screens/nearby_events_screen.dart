@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mmk/assets/dummy_data.dart';
+import 'package:mmk/helpers/dummy_data.dart';
 import 'package:mmk/screens/widgets/event_card.dart';
 
 class NearbyEventsScreen extends StatelessWidget {

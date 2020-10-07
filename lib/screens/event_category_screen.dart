@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mmk/assets/dummy_data.dart';
+import 'package:mmk/helpers/dummy_data.dart';
 
 class EventCategoryScreen extends StatelessWidget {
   static const String routeName = '/event-category-screen';
@@ -10,7 +10,7 @@ class EventCategoryScreen extends StatelessWidget {
     List<List<String>> data = ModalRoute.of(context).settings.arguments;
     List<String> categories = [];
     switch (data.elementAt(0).elementAt(0)) {
-      case 'All Events':
+      case 'Events':
         categories = dummy.allCat;
         break;
       case 'Outdoor Activities':
@@ -46,7 +46,8 @@ class EventCategoryScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     child: Text(
                       data.elementAt(0).elementAt(0),
-                      style: TextStyle(fontSize: 30),
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -55,15 +56,48 @@ class EventCategoryScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     child: GestureDetector(
                       onTap: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            categories[i],
-                            style: TextStyle(fontSize: 18),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          // color: Theme.of(context).primaryColor,
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.0),
                           ),
-                          Icon(Icons.arrow_right),
-                        ],
+                          color: Theme.of(context).primaryColor,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.home,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        categories[i],
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                  Icon(
+                                    Icons.arrow_right,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

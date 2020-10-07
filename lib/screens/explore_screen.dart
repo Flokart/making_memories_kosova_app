@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:mmk/assets/dummy_data.dart';
+import 'package:mmk/helpers/dummy_data.dart';
 
 import '../screens/widgets/event_category_card.dart';
 import '../screens/widgets/event_card.dart';
@@ -26,6 +26,7 @@ class ExploreScreen extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text('Explore'),
         actions: <Widget>[
           Padding(
@@ -89,13 +90,14 @@ class ExploreScreen extends StatelessWidget {
                   height: 220,
                   child: Swiper(
                     controller: SwiperController(),
-                    loop: false,
+                    loop: true,
                     itemBuilder: (BuildContext context, int index) {
                       return EventCard(index, 'now');
                     },
                     itemCount: dummy.now.length,
                     viewportFraction: 0.8,
                     scale: 0.9,
+                    // autoplay: true,
                   ),
                 ),
                 Padding(
@@ -116,13 +118,14 @@ class ExploreScreen extends StatelessWidget {
                   height: 220,
                   child: Swiper(
                     controller: SwiperController(),
-                    loop: false,
+                    loop: true,
                     itemBuilder: (BuildContext context, int index) {
-                      return EventCard(index, 'nearby') ?? Container();
+                      return EventCard(index, 'nearby');
                     },
                     itemCount: dummy.nearby.length,
                     viewportFraction: 0.8,
                     scale: 0.9,
+                    // autoplay: true,
                   ),
                 ),
                 Padding(
@@ -143,13 +146,14 @@ class ExploreScreen extends StatelessWidget {
                   height: 220,
                   child: Swiper(
                     controller: SwiperController(),
-                    loop: false,
+                    loop: true,
                     itemBuilder: (BuildContext context, int index) {
                       return EventCard(index, 'future') ?? Container();
                     },
                     itemCount: dummy.future.length,
                     viewportFraction: 0.8,
                     scale: 0.9,
+                    // autoplay: true,
                   ),
                 ),
               ],

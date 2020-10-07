@@ -19,6 +19,7 @@ class _TripsScreenState extends State<TripsScreen> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Color.fromRGBO(87,112, 182, 1),
             bottom: TabBar(
               tabs: [
                 Tab(
@@ -39,7 +40,8 @@ class _TripsScreenState extends State<TripsScreen> {
                 ),
               ],
             ),
-            title: Text('Trips'),
+
+            // title: Text('Trips'),
           ),
           body: TabBarView(
             children: [

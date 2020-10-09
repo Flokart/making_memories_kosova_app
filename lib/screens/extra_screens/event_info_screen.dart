@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../helpers/dummy_data.dart';
+
 class EventInfoScreen extends StatelessWidget {
   static const String routeName = '/event-info-screen';
+  final dummy = DummyData();
 
   @override
   Widget build(BuildContext context) {

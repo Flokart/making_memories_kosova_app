@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mmk/models/memory_photo.dart';
 
-// import '../models/place.dart';
+import '../../helpers/models/memory_photo.dart';
 import '../../helpers/db_helper.dart';
 
 class Memories with ChangeNotifier {

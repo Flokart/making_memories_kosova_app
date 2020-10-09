@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../screens/providers/memories.dart';
-import 'widgets/image_input.dart';
+import '../providers/memories.dart';
+import '../widgets/image_input.dart';
 
 class AddMemoriesScreen extends StatefulWidget {
   static const routeName = '/add-place';
@@ -15,6 +15,7 @@ class AddMemoriesScreen extends StatefulWidget {
 
 class AddMemoriesScreenState extends State<AddMemoriesScreen> {
   File _pickedImage;
+  final addMemoriesColor = Color.fromRGBO(243, 204, 44, 1);
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -25,15 +26,15 @@ class AddMemoriesScreenState extends State<AddMemoriesScreen> {
       return;
     }
     Provider.of<Memories>(context, listen: false).addMemory(_pickedImage);
-    print('Memories added...');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Make new memories'),
-        backgroundColor: Color.fromRGBO(243, 204, 44, 1),
+        backgroundColor: addMemoriesColor,
       ),
       body: SafeArea(
         child: Column(
@@ -52,7 +53,7 @@ class AddMemoriesScreenState extends State<AddMemoriesScreen> {
                 onPressed: _savePhoto,
                 elevation: 0,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                color: Color.fromRGBO(243, 204, 44, 1),
+                color: addMemoriesColor,
               ),
             ),
           ],

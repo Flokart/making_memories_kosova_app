@@ -83,9 +83,6 @@ class DummyData {
     ],
   ];
 
-  final List<List<String>> now = [];
-  final List<List<String>> nearby = [];
-  final List<List<String>> future = [];
   final List<List<String>> all = [
     [
       'Events',
@@ -147,4 +144,7 @@ class DummyData {
     'Rent',
     'Plane',
   ];
+
+  List<List<String>> booked = [];
+  List<List<String>> saved = [];
 }

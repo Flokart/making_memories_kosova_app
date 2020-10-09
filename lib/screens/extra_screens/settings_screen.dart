@@ -17,7 +17,9 @@ class SettingsScreen extends StatelessWidget {
               margin: EdgeInsets.all(16),
               child: Text(
                 'Preferences',
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             FlatButton(
@@ -66,7 +68,9 @@ class SettingsScreen extends StatelessWidget {
               margin: EdgeInsets.all(16),
               child: Text(
                 'Bookings and Payment',
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             FlatButton(
@@ -85,7 +89,9 @@ class SettingsScreen extends StatelessWidget {
               margin: EdgeInsets.all(16),
               child: Text(
                 'Support',
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             FlatButton(
@@ -114,7 +120,9 @@ class SettingsScreen extends StatelessWidget {
               margin: EdgeInsets.all(16),
               child: Text(
                 'Travel Tools',
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             FlatButton(

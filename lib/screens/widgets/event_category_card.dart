@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers/dummy_data.dart';
-import '../event_category_screen.dart';
+import '../extra_screens/event_category_screen.dart';
 
 class EventCategoryCard extends StatelessWidget {
   EventCategoryCard(this.index);
@@ -13,25 +13,12 @@ class EventCategoryCard extends StatelessWidget {
     List<List<String>> data;
     switch (index) {
       case 0:
-        for (int i = 0; i < dummy.data.length; i++) {
-          dummy.all.add(dummy.data[i]);
-        }
         data = dummy.all;
         break;
       case 1:
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'outdoor') {
-            dummy.outdoor.add(dummy.data[i]);
-          }
-        }
         data = dummy.outdoor;
         break;
       case 2:
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'accomm') {
-            dummy.accomm.add(dummy.data[i]);
-          }
-        }
         data = dummy.accomm;
         break;
       case 3:

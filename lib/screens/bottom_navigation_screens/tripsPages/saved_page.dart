@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../stateManager/bottom_navigation_state.dart';
+import '../../../navigation/bottom_navigation_state.dart';
 
 class SavedPage extends StatelessWidget {
+  final savedColor = Color.fromRGBO(87,112, 182, 1);
   @override
   Widget build(BuildContext context) {
     BottomNavigationState state = Provider.of<BottomNavigationState>(context);
@@ -33,13 +34,13 @@ class SavedPage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 padding: const EdgeInsets.all(13),
-                color: Color.fromRGBO(87,112, 182, 1),
+                color: savedColor,
                 onPressed: () {
                   state.setSelectedPageIndex(0);
                 },
                 child: Container(
                     width: double.infinity,
-                    color: Color.fromRGBO(87,112, 182, 1),
+                    color: savedColor,
                     child: Text(
                       'Get Started',
                       style: TextStyle(color: Colors.white, fontSize: 15),

@@ -1,57 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:mmk/screens/nearby_events_screen.dart';
 
-class SearchScreen extends StatelessWidget {
+import '../../screens/extra_screens/nearby_events_screen.dart';
+
+class SearchScreen extends StatefulWidget {
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  final searchColor = Color.fromRGBO(229, 106, 46, 1);
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromRGBO(229, 106, 46, 1),
-          actions: [
-            Container(
-              width: double.infinity,
-              height: 40,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: searchColor,
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: 'Search',
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
             ),
-          ],
+            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.all(4),
-              //   child: TextField(
-              //     decoration: InputDecoration(
-              //       hintText: 'Search',
-              //       contentPadding:
-              //           EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              //       border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(25),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Container(
                   height: 240,
                   width: double.infinity,
                   child: Card(
                     child: Stack(children: [
                       GestureDetector(
-                        onTap: () => Navigator.of(context)
-                            .pushNamed(NearbyEventsScreen.routeName),
+                        onTap: () => Navigator.of(context).pushNamed(
+                          NearbyEventsScreen.routeName,
+                        ),
                         child: Container(
                           width: 390,
                           height: 240,

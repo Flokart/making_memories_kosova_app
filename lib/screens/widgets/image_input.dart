@@ -16,6 +16,7 @@ class ImageInput extends StatefulWidget {
 
 class _ImageInputState extends State<ImageInput> {
   File _storedImage;
+  final imageInputColor = Color.fromRGBO(243, 204, 44, 1);
 
   Future<void> _takePicture() async {
     final picker = ImagePicker();
@@ -75,7 +76,7 @@ class _ImageInputState extends State<ImageInput> {
           child: FlatButton.icon(
             icon: Icon(Icons.camera),
             label: Text('Take Picture'),
-            textColor: Color.fromRGBO(243, 204, 44, 1),
+            textColor: imageInputColor,
             onPressed: _takePicture,
           ),
         ),

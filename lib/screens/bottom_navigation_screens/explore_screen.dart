@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:mmk/helpers/dummy_data.dart';
 
-import '../screens/widgets/event_category_card.dart';
-import '../screens/widgets/event_card.dart';
+import '../../helpers/dummy_data.dart';
+import '../widgets/event_category_card.dart';
+import '../widgets/event_card.dart';
 
 // ignore: must_be_immutable
 class ExploreScreen extends StatelessWidget {
@@ -12,28 +12,11 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (init == 0) {
-      for (int i = 0; i < dummy.data.length; i++) {
-        if (dummy.data[i][4] == 'now') dummy.now.add(dummy.data[i]);
-      }
-      for (int i = 0; i < dummy.data.length; i++) {
-        if (dummy.data[i][4] == 'nearby') dummy.nearby.add(dummy.data[i]);
-      }
-      for (int i = 0; i < dummy.data.length; i++) {
-        if (dummy.data[i][4] == 'future') dummy.future.add(dummy.data[i]);
-      }
-      init++;
-    }
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).primaryColor,
         title: Text('Explore'),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Icon(Icons.search),
-          ),
-        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -94,10 +77,12 @@ class ExploreScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return EventCard(index, 'now');
                     },
-                    itemCount: dummy.now.length,
+                    itemCount: dummy.data
+                        .where((element) => element.elementAt(4) == 'now')
+                        .toList()
+                        .length,
                     viewportFraction: 0.8,
                     scale: 0.9,
-                    // autoplay: true,
                   ),
                 ),
                 Padding(
@@ -122,10 +107,12 @@ class ExploreScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return EventCard(index, 'nearby');
                     },
-                    itemCount: dummy.nearby.length,
+                    itemCount: dummy.data
+                        .where((element) => element.elementAt(4) == 'nearby')
+                        .toList()
+                        .length,
                     viewportFraction: 0.8,
                     scale: 0.9,
-                    // autoplay: true,
                   ),
                 ),
                 Padding(
@@ -150,10 +137,12 @@ class ExploreScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return EventCard(index, 'future') ?? Container();
                     },
-                    itemCount: dummy.future.length,
+                    itemCount: dummy.data
+                        .where((element) => element.elementAt(4) == 'future')
+                        .toList()
+                        .length,
                     viewportFraction: 0.8,
                     scale: 0.9,
-                    // autoplay: true,
                   ),
                 ),
               ],

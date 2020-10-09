@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mmk/helpers/dummy_data.dart';
+
+import '../../helpers/dummy_data.dart';
 
 class EventCategoryScreen extends StatelessWidget {
   static const String routeName = '/event-category-screen';
@@ -60,7 +61,6 @@ class EventCategoryScreen extends StatelessWidget {
                         height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
-                          // color: Theme.of(context).primaryColor,
                         ),
                         child: Card(
                           shape: RoundedRectangleBorder(

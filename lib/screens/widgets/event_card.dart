@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers/dummy_data.dart';
-import '../event_info_screen.dart';
+import '../extra_screens/event_info_screen.dart';
 
 // ignore: must_be_immutable
 class EventCard extends StatelessWidget {
@@ -19,40 +19,35 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (category) {
       case 'now':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][4] == 'now') dummy.now.add(dummy.data[i]);
-          data = dummy.now;
-        }
+        data = dummy.data
+            .where((element) => element.elementAt(4) == 'now')
+            .toList();
         break;
       case 'nearby':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][4] == 'nearby') dummy.nearby.add(dummy.data[i]);
-          data = dummy.nearby;
-        }
+        data = dummy.data
+            .where((element) => element.elementAt(4) == 'nearby')
+            .toList();
         break;
       case 'future':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][4] == 'future') dummy.future.add(dummy.data[i]);
-          data = dummy.future;
-        }
+        data = dummy.data
+            .where((element) => element.elementAt(4) == 'future')
+            .toList();
         break;
       case 'Events':
-        for (int i = 0; i < dummy.data.length; i++) {
-          dummy.all.add(dummy.data[i]);
-        }
         data = dummy.all;
         break;
       case 'Outdoor Activities':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'outdoor') dummy.outdoor.add(dummy.data[i]);
-          data = dummy.outdoor;
-        }
+        data = dummy.outdoor;
         break;
       case 'Accomodations':
-        for (int i = 0; i < dummy.data.length; i++) {
-          if (dummy.data[i][3] == 'accomm') dummy.accomm.add(dummy.data[i]);
-          data = dummy.accomm;
-        }
+        data = dummy.accomm;
+        break;
+      case 'booked':
+        data = dummy.booked;
+        print(data);
+        break;
+      case 'saved':
+        data = dummy.saved;
         break;
     }
     return GestureDetector(
@@ -84,40 +79,24 @@ class EventCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 35, horizontal: 15),
+          Container(
+            width: 310,
+            height: 190,
             child: Align(
               alignment: Alignment.bottomLeft,
-              child: Text(
-                data.elementAt(index).elementAt(5),
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.white,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text(
+                  data.elementAt(index).elementAt(5),
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
-          // Container(
-          //   width: double.infinity,
-          //   height: 35,
-          //   color: Colors.black.withOpacity(0.4),
-          //   child: Padding(
-          //     padding: const EdgeInsets.symmetric(horizontal: 8),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: <Widget>[
-          //         Text(
-          //           data.elementAt(index).elementAt(0),
-          //           style: TextStyle(fontSize: 18, color: Colors.white),
-          //         ),
-          //         Text(
-          //           data.elementAt(index).elementAt(1),
-          //           style: TextStyle(fontSize: 18, color: Colors.white),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

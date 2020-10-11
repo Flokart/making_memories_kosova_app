@@ -18,6 +18,9 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (category) {
+      case 'all':
+        data = dummy.data;
+        break;
       case 'now':
         data = dummy.data
             .where((element) => element.elementAt(4) == 'now')
@@ -34,7 +37,7 @@ class EventCard extends StatelessWidget {
             .toList();
         break;
       case 'Events':
-        data = dummy.all;
+        data = dummy.events;
         break;
       case 'Outdoor Activities':
         data = dummy.outdoor;
@@ -82,18 +85,30 @@ class EventCard extends StatelessWidget {
           Container(
             width: 310,
             height: 190,
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text(
-                  data.elementAt(index).elementAt(5),
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Icon(
+                      Icons.rowing,
+                      color: Colors.white,
+                      size: 32,
+                    ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      data.elementAt(index).elementAt(5),
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -36,7 +36,7 @@ class MMK extends StatelessWidget {
           primaryColor: Color.fromRGBO(43, 181, 100, 1),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: LoginScreen(),
+        home: MMKBottomNavigationBar(),
       ),
     );
   }

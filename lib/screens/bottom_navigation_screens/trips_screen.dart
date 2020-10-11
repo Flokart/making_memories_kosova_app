@@ -21,7 +21,7 @@ class _TripsScreenState extends State<TripsScreen> {
           backgroundColor: tripsColor,
           toolbarHeight: 56, // to be changed to dynamic in the future
           bottom: TabBar(
-            indicatorColor: Colors.black,
+            indicatorColor: Colors.white,
             tabs: [
               Tab(
                 icon: Text(

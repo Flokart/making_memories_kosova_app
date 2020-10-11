@@ -83,7 +83,7 @@ class DummyData {
     ],
   ];
 
-  final List<List<String>> all = [
+  final List<List<String>> events = [
     [
       'Events',
       'https://1001freedownloads.s3.amazonaws.com/vector/thumb/315738/b7b6e07367f534efcb60b98a7e9a0c21-blurry-green-nature-background.jpg',

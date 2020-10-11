@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../navigation/bottom_navigation_state.dart';
 import '../../helpers/dummy_data.dart';
 
 class EventInfoScreen extends StatelessWidget {
@@ -8,6 +10,7 @@ class EventInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BottomNavigationState state = Provider.of<BottomNavigationState>(context);
     final Map arguments = ModalRoute.of(context).settings.arguments as Map;
     final List<List<String>> data = arguments.values.elementAt(0);
     final int index = arguments.values.elementAt(1);
@@ -28,15 +31,52 @@ class EventInfoScreen extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
-                    child: Text(
-                      data.elementAt(index).elementAt(5),
-                      style: TextStyle(fontSize: 25),
-                    ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        data.elementAt(index).elementAt(5),
+                        style: TextStyle(fontSize: 25),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          state.setSaved(true);
+                        },
+                        child: Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Container(
+                            width: 150,
+                            height: 35,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(25.0),
+                              child: Container(
+                                color: Colors.deepOrangeAccent,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      'Save Event',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Icon(
+                                      Icons.favorite_border,
+                                      size: 18,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Card(
@@ -91,7 +131,9 @@ class EventInfoScreen extends StatelessWidget {
                 vertical: 50,
               ),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  state.setBooked(true);
+                },
                 child: Card(
                   elevation: 5,
                   shape: RoundedRectangleBorder(

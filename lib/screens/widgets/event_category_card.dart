@@ -13,7 +13,7 @@ class EventCategoryCard extends StatelessWidget {
     List<List<String>> data;
     switch (index) {
       case 0:
-        data = dummy.all;
+        data = dummy.events;
         break;
       case 1:
         data = dummy.outdoor;

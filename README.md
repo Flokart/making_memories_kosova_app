@@ -1,6 +1,7 @@
 ## Making Memories Kosova App
 
-A new Flutter project.
+A new Flutter project for Making Memories Kosova.
+IMPORTANT! The app is not responsive and only ready for a visual presentation.
 
 ## Getting Started
 

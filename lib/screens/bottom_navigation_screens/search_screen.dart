@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../helpers/dummy_data.dart';
 import '../../screens/extra_screens/event_info_screen.dart';
-import '../../screens/extra_screens/nearby_events_screen.dart';
+import '../extra_screens/nearby_activities_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -10,23 +11,43 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final searchColor = Color.fromRGBO(229, 106, 46, 1);
   List<List<String>> data = DummyData().data;
   List<List<String>> filteredData = [];
   final myController = TextEditingController();
+  final List<String> popularSearches = [
+    'Luboten Hiking',
+    'Rugova ZipLine',
+    'Skarpa Skiing',
+    'Coffee Shops',
+    'Sport Halls',
+  ];
 
+  //filter data based on user input on the search bar as "value" argument
   void _filterData(value) {
     setState(() {
       filteredData = data
-          .where((element) =>
-              element.elementAt(5).toLowerCase().contains(value.toLowerCase()))
-          .toList();
-      print(filteredData);
+              .where(
+                (element) => element
+                    .elementAt(5)
+                    .toLowerCase()
+                    .contains(value.toLowerCase()),
+              )
+              .toList() +
+          data
+              .where(
+                (element) => element
+                    .elementAt(0)
+                    .toLowerCase()
+                    .contains(value.toLowerCase()),
+              )
+              .toList();
     });
+    print(filteredData);
   }
 
   @override
   Widget build(BuildContext context) {
+    final searchColor = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -36,6 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
+          //search bar insinde the appBar
           child: Container(
             child: TextField(
               controller: myController,
@@ -55,16 +77,18 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-            child: myController.text == ''
-                ? Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Container(
-                          height: 240,
-                          width: double.infinity,
-                          child: Card(
-                            child: Stack(children: [
+          //while the user has not yet typed anything on the search bar show Nearby Activities button and popular searches
+          child: myController.text == ''
+              ? Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Container(
+                        height: 240,
+                        width: double.infinity,
+                        child: Card(
+                          child: Stack(
+                            children: [
                               GestureDetector(
                                 onTap: () => Navigator.of(context).pushNamed(
                                   NearbyEventsScreen.routeName,
@@ -89,158 +113,221 @@ class _SearchScreenState extends State<SearchScreen> {
                                       fontSize: 28, color: Colors.white),
                                 ),
                               ),
-                            ]),
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
+                            ],
+                          ),
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Popular Searches',
-                            style: TextStyle(fontSize: 28),
-                          ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Popular Searches',
+                          style: TextStyle(fontSize: 28),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                'Gjeravica Hiking',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Divider(
-                              thickness: 1,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                'Rugova ZipLine',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Divider(
-                              thickness: 1,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                'Boge Skiing',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Divider(
-                              thickness: 1,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                'Coffee Shops',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Divider(
-                              thickness: 1,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                'Sport Halls',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Divider(
-                              thickness: 1,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-                : Center(
-                    child: Column(
-                      children: [
-                        for (int i = 0; i < filteredData.length; i++)
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                EventInfoScreen.routeName,
-                                arguments: {
-                                  'data': data,
-                                  'index': i,
-                                },
-                              );
-                            },
-                            child: Stack(
-                              children: <Widget>[
-                                Card(
-                                  elevation: 5,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  child: Container(
-                                    width: 310,
-                                    height: 190,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      child: Image.network(
-                                        filteredData.elementAt(i).elementAt(2),
-                                        fit: BoxFit.fill,
-                                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (int i = 0; i < popularSearches.length; i++)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        myController.text = popularSearches[i];
+                                        _filterData(
+                                          myController.text.substring(
+                                            0,
+                                            myController.text.indexOf(' '),
+                                          ),
+                                        );
+                                      });
+                                    },
+                                    child: Text(
+                                      popularSearches[i],
+                                      style: TextStyle(fontSize: 18),
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  width: 310,
-                                  height: 190,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25, vertical: 15),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topRight,
-                                          child: Icon(
-                                            Icons.rowing,
-                                            color: Colors.white,
-                                            size: 32,
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomLeft,
-                                          child: Text(
-                                            filteredData
-                                                .elementAt(i)
-                                                .elementAt(5),
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                Divider(
+                                  thickness: 1,
                                 ),
                               ],
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
-                  )),
+                  ],
+                )
+              //if the the user input doesn't match any existing activity or event inform them and show popular searches
+              : filteredData.isEmpty
+                  ? Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 50),
+                          child: Center(
+                            child: Text(
+                              'Sorry, no such events found!',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Recommended Searches',
+                              style: TextStyle(fontSize: 28),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              for (int i = 0; i < popularSearches.length; i++)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            myController.text =
+                                                popularSearches[i];
+                                            _filterData(
+                                              myController.text.substring(
+                                                0,
+                                                myController.text.indexOf(' '),
+                                              ),
+                                            );
+                                          });
+                                        },
+                                        child: Text(
+                                          popularSearches[i],
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  //else show a Centered Column containing the results of user's searching
+                  : Center(
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < filteredData.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    EventInfoScreen.routeName,
+                                    arguments: {
+                                      'data': filteredData,
+                                      'index': i,
+                                    },
+                                  );
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    Card(
+                                      elevation: 5,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      child: Container(
+                                        width: 310,
+                                        height: 190,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                          child: Image.asset(
+                                            'assets/images/events/' +
+                                                filteredData
+                                                    .elementAt(i)
+                                                    .elementAt(2),
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 310,
+                                      height: 190,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25, vertical: 15),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.topRight,
+                                              child: SvgPicture.asset(
+                                                'assets/images/icons/' +
+                                                    data
+                                                        .elementAt(i)
+                                                        .elementAt(0) +
+                                                    '.svg',
+                                                color: data
+                                                            .elementAt(i)
+                                                            .elementAt(0) ==
+                                                        'Paragliding'
+                                                    ? Colors.grey
+                                                    : Colors.white,
+                                                height: 35,
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.bottomLeft,
+                                              child: Text(
+                                                filteredData
+                                                    .elementAt(i)
+                                                    .elementAt(5),
+                                                style: TextStyle(
+                                                  fontSize: 25,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+        ),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mmk/navigation/bottom_navigation_bar.dart';
 
+//register and login screens containing username, email and password textfields under the MMK Logo
 class LoginScreen extends StatefulWidget {
+  static const String routeName = '/login-screen';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -89,8 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? setState(() {
                               register = false;
                             })
-                          : Navigator.of(context)
-                              .pushNamed(MMKBottomNavigationBar.routeName);
+                          : Navigator.of(context).pushReplacementNamed(
+                              MMKBottomNavigationBar.routeName);
                     },
                     child: Card(
                       elevation: 5,

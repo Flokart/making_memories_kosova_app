@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../navigation/bottom_navigation_state.dart';
+import '../../screens/login/login_screen.dart';
+
+//shows settings of the app and the sign out button
 class SettingsScreen extends StatelessWidget {
   static const String routeName = '/settings-screen';
 
   @override
   Widget build(BuildContext context) {
+    final settingsColor = Theme.of(context).primaryColor;
+    BottomNavigationState state = Provider.of<BottomNavigationState>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        title: Text(
+          'Settings',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -18,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
               child: Text(
                 'Preferences',
                 style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  color: settingsColor,
                 ),
               ),
             ),
@@ -69,7 +82,7 @@ class SettingsScreen extends StatelessWidget {
               child: Text(
                 'Bookings and Payment',
                 style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  color: settingsColor,
                 ),
               ),
             ),
@@ -90,7 +103,7 @@ class SettingsScreen extends StatelessWidget {
               child: Text(
                 'Support',
                 style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  color: settingsColor,
                 ),
               ),
             ),
@@ -115,32 +128,15 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.all(16),
-              child: Text(
-                'Travel Tools',
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-            ),
-            FlatButton(
-              onPressed: () {},
-              child: Container(
-                width: double.infinity,
-                child: Text(
-                  'Other Tripadvisor Apps',
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ),
-            Divider(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
-                onPressed: () {},
-                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  state.setSelectedPageIndex(0);
+                  Navigator.of(context)
+                      .pushReplacementNamed(LoginScreen.routeName);
+                },
+                color: settingsColor,
                 child: Container(
                   width: double.infinity,
                   child: Center(

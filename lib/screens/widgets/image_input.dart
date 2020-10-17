@@ -16,7 +16,6 @@ class ImageInput extends StatefulWidget {
 
 class _ImageInputState extends State<ImageInput> {
   File _storedImage;
-  final imageInputColor = Color.fromRGBO(243, 204, 44, 1);
 
   Future<void> _takePicture() async {
     final picker = ImagePicker();
@@ -39,6 +38,7 @@ class _ImageInputState extends State<ImageInput> {
 
   @override
   Widget build(BuildContext context) {
+    final imageInputColor = Theme.of(context).primaryColor;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -53,7 +53,7 @@ class _ImageInputState extends State<ImageInput> {
         ),
         Container(
           width: double.infinity,
-          height: 200,
+          height: 210,
           decoration: BoxDecoration(
             border: Border.all(width: 1, color: Colors.grey),
           ),

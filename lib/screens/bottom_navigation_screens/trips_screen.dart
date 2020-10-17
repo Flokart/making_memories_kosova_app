@@ -10,16 +10,16 @@ class TripsScreen extends StatefulWidget {
 
 class _TripsScreenState extends State<TripsScreen> {
   var controller;
-  final tripsColor = Color.fromRGBO(87, 112, 182, 1);
   @override
   Widget build(BuildContext context) {
+    final tripsColor = Theme.of(context).primaryColor;
     controller = PageController(initialPage: 0);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: tripsColor,
-          toolbarHeight: 56, // to be changed to dynamic in the future
+          toolbarHeight: 56,
           bottom: TabBar(
             indicatorColor: Colors.white,
             tabs: [
@@ -28,7 +28,7 @@ class _TripsScreenState extends State<TripsScreen> {
                   'Booked',
                   style: TextStyle(
                     fontSize: 17,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -37,13 +37,14 @@ class _TripsScreenState extends State<TripsScreen> {
                   'Saved',
                   style: TextStyle(
                     fontSize: 17,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
             ],
           ),
         ),
+        //the default tab is Booked, show Saved tab if user clicks the button or swipes left
         body: TabBarView(
           children: [
             BookedPage(),

@@ -5,13 +5,14 @@ import 'package:provider/provider.dart';
 import '../../../navigation/bottom_navigation_state.dart';
 
 class SavedPage extends StatelessWidget {
-  final savedColor = Color.fromRGBO(87, 112, 182, 1);
   @override
   Widget build(BuildContext context) {
+    final savedColor = Theme.of(context).primaryColor;
     BottomNavigationState state = Provider.of<BottomNavigationState>(context);
     bool savedContent = state.getSaved;
     return Container(
       child: savedContent
+          //if anything saved show the first event from now category
           ? Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Align(
@@ -19,6 +20,7 @@ class SavedPage extends StatelessWidget {
                 child: EventCard(0, 'now'),
               ),
             )
+          //else show a text and a button that redirects the user to the explore screen
           : Padding(
               padding: const EdgeInsets.only(
                 top: 100.0,

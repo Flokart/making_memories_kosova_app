@@ -5,14 +5,14 @@ import 'package:provider/provider.dart';
 import '../../../navigation/bottom_navigation_state.dart';
 
 class BookedPage extends StatelessWidget {
-  final bookedColor = Color.fromRGBO(87, 112, 182, 1);
-
   @override
   Widget build(BuildContext context) {
+    final bookedColor = Theme.of(context).primaryColor;
     BottomNavigationState state = Provider.of<BottomNavigationState>(context);
     bool bookedContent = state.getBooked;
     return Container(
       child: bookedContent
+          //if anything booked show the first event from now category
           ? Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Align(
@@ -20,6 +20,7 @@ class BookedPage extends StatelessWidget {
                 child: EventCard(0, 'now'),
               ),
             )
+          //else show a text and a button that redirects the user to the explore screen
           : Padding(
               padding: const EdgeInsets.only(
                 top: 100.0,

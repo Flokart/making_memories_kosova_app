@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../helpers/dummy_data.dart';
 import '../extra_screens/event_info_screen.dart';
@@ -47,7 +48,6 @@ class EventCard extends StatelessWidget {
         break;
       case 'booked':
         data = dummy.booked;
-        print(data);
         break;
       case 'saved':
         data = dummy.saved;
@@ -75,8 +75,8 @@ class EventCard extends StatelessWidget {
               height: 190,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25.0),
-                child: Image.network(
-                  data.elementAt(index).elementAt(2),
+                child: Image.asset(
+                  'assets/images/events/' + data.elementAt(index).elementAt(2),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -92,10 +92,12 @@ class EventCard extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.topRight,
-                    child: Icon(
-                      Icons.rowing,
+                    child: SvgPicture.asset(
+                      'assets/images/events/' +
+                          data.elementAt(index).elementAt(0) +
+                          '.svg',
                       color: Colors.white,
-                      size: 32,
+                      height: 35,
                     ),
                   ),
                   Align(

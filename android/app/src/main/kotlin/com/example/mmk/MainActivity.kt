@@ -1,4 +1,4 @@
-package com.example.mmk
+package com.mmkosovo.mmk
 
 import io.flutter.embedding.android.FlutterActivity
 
